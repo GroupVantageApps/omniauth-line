@@ -21,6 +21,11 @@ module OmniAuth
         super
       end
 
+      def request_phase
+        puts client.auth_code.authorize_url({:redirect_uri => callback_url}.merge(authorize_params))
+        redirect client.auth_code.authorize_url({:redirect_uri => callback_url}.merge(authorize_params))
+      end
+
       uid { raw_info['userId'] }
 
       info do
